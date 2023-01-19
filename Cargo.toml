@@ -1,0 +1,15 @@
+[package]
+name = "qshot"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "A simple screenshotting library for Windows that focuses on performance."
+repository = "https://github.com/V9X/qshot-rs"
+keywords = ["screenshot", "screenshots", "capture"]
+
+[dependencies.windows]
+version = "0.43.0"
+features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Gdi",
+]
