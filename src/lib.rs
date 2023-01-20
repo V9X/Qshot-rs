@@ -1,5 +1,7 @@
 
-#[cfg(windows)]
+#![cfg(windows)]
+
 mod capture;
-pub use capture::CaptureManager;
-pub use capture::CaptureData;
+
+pub use crate::capture::CaptureManager;
+pub use crate::capture::CaptureData;

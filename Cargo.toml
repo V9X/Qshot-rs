@@ -1,11 +1,15 @@
 [package]
 name = "qshot"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 license = "MIT"
 description = "A simple screenshotting library for Windows that focuses on performance."
 repository = "https://github.com/V9X/qshot-rs"
 keywords = ["screenshot", "screenshots", "capture"]
+
+[package.metadata.docs.rs]
+default-target = "x86_64-pc-windows-msvc"
+targets = []
 
 [dependencies.windows]
 version = "0.43.0"
