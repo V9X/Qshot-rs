@@ -42,7 +42,7 @@ impl CaptureManager {
     /// fn main() -> Result<(), Box<dyn Error>> {
     ///     let window_handle = 0; // A handle to a window that should be captured (0 to capture the entire screen).
     ///     let top_left = (250, 250); // X and Y coordinates of the upper-left corner of the screen/window.
-    ///     let wh = (250, 250); // Width and height of the area which should be captured.
+    ///     let wh = (500, 500); // Width and height of the area which should be captured.
     ///     
     ///     let manager = CaptureManager::new(window_handle, top_left, wh)?;
     /// 
