@@ -1,15 +1,21 @@
 /// A wrapper struct containing a slice.
-pub struct CaptureData<'a> {
-    /// A raw slice containing copied bitmap bit values.
-    ///
-    /// The bits are stored as a one-dimensional array, in which one pixel consists of 3 adjacent \[B, G, R] values.
-    pub bits: &'a [u8],
+pub struct CaptureData {
+    bits: &'static [u8],
     hbitmap: windows::Win32::Graphics::Gdi::HBITMAP,
 }
 
-impl <'a> Drop for CaptureData<'a> {
+impl Drop for CaptureData {
     fn drop(&mut self) {
         unsafe { windows::Win32::Graphics::Gdi::DeleteObject(self.hbitmap) };
+    }
+}
+
+impl CaptureData {
+    /// Returns a raw slice containing copied bitmap bit values.
+    ///
+    /// The bits are stored as a one-dimensional array, in which one pixel consists of 3 adjacent \[B, G, R] values.
+    pub fn get_bits(&self) -> &[u8] {
+        self.bits
     }
 }
 /// A struct that contains and manages information required for screen capturing
@@ -103,12 +109,12 @@ impl CaptureManager {
     ///     let manager = CaptureManager::new(0, (250, 250), (500, 500))?;
     /// 
     ///     let res = manager.capture()?;
-    ///     assert_eq!(res.bits.len(), 500 * 500 * 3);
+    ///     assert_eq!(res.get_bits().len(), 500 * 500 * 3);
     /// 
     ///     Ok(())
     /// }
     /// ```
-    pub fn capture<'a>(&self) -> Result<CaptureData<'a>, windows::core::Error> {
+    pub fn capture(&self) -> Result<CaptureData, windows::core::Error> {
         unsafe {
             let mut bits= std::mem::MaybeUninit::<*mut u8>::uninit();
             let hbitmap = windows::Win32::Graphics::Gdi::CreateDIBSection(
@@ -159,12 +165,12 @@ impl CaptureManager {
     ///     let mut manager = CaptureManager::new(0, (250, 250), (500, 500))?;
     /// 
     ///     let res = manager.capture()?;
-    ///     assert_eq!(res.bits.len(), 500 * 500 * 3);
+    ///     assert_eq!(res.get_bits().len(), 500 * 500 * 3);
     ///     
     ///     manager.change_size((100, 100), (100, 250));
     ///     
     ///     let res1 = manager.capture()?;
-    ///     assert_eq!(res1.bits.len(), 100 * 250 * 3);
+    ///     assert_eq!(res1.get_bits().len(), 100 * 250 * 3);
     /// 
     ///     Ok(())
     /// }

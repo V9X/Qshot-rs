@@ -1,4 +1,3 @@
-
 #![cfg(windows)]
 
 mod capture;

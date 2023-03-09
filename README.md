@@ -22,7 +22,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 			manager.change_size((100, 100), (100, 250));
 		}
 		let res = manager.capture()?;
-		do_something(res.bits);
+		do_something(res.get_bits());
 	}
 	Ok(())
 }
