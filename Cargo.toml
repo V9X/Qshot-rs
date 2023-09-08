@@ -1,6 +1,6 @@
 [package]
 name = "qshot"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 license = "MIT"
 description = "A simple screenshotting library for Windows that focuses on performance."
@@ -12,7 +12,7 @@ default-target = "x86_64-pc-windows-msvc"
 targets = []
 
 [dependencies.windows]
-version = "0.43.0"
+version = "0.51.1"
 features = [
     "Win32_Foundation",
     "Win32_Graphics_Gdi",
