@@ -2,5 +2,5 @@
 
 mod capture;
 
-pub use crate::capture::CaptureManager;
 pub use crate::capture::CaptureData;
+pub use crate::capture::CaptureManager;
